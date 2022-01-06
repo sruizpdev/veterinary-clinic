@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import Error from "./Error";
 
 const Form = () => {
+  const [pet, setPet] = useState("");
+  const [owner, setOwner] = useState("");
+  const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
+  const [symptoms, setSymptoms] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if ([pet, owner, email, date, symptoms].includes("")) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    const patient = {
+      pet,
+      owner,
+      email,
+      date,
+      symptoms,
+    };
+    console.log(patient);
+  };
+
   return (
     <div className="md:w-1/2 shadow-md rounded-md bg-white">
       <h1>Form component</h1>
-      <form className="p-10">
+      {error && <Error message="Error" />}
+      <form className="p-10" onSubmit={handleSubmit}>
         <div className="mb-5">
           <label htmlFor="pet" className="uppercase">
             Name of the pet
@@ -14,6 +40,8 @@ const Form = () => {
             id="pet"
             className="border-2 w-full p-2 mt-2 rounded-md"
             placeholder="Pet name"
+            value={pet}
+            onChange={(e) => setPet(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -25,6 +53,8 @@ const Form = () => {
             id="owner"
             className="border-2 w-full p-2 mt-2 rounded-md"
             placeholder="Owner name"
+            value={owner}
+            onChange={(e) => setOwner(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -36,6 +66,8 @@ const Form = () => {
             id="email"
             className="border-2 w-full p-2 mt-2 rounded-md"
             placeholder="contact email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -46,6 +78,8 @@ const Form = () => {
             type="date"
             id="date"
             className="border-2 w-full p-2 mt-2 rounded-md"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -55,6 +89,8 @@ const Form = () => {
           <textarea
             id="symptoms"
             className="border-2 w-full p-2 mt-2 rounded-md"
+            value={symptoms}
+            onChange={(e) => setSymptoms(e.target.value)}
           ></textarea>
         </div>
         <input

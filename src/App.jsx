@@ -1,6 +1,11 @@
+import Header from "./components/Header";
 function App() {
   console.log("test");
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default App;

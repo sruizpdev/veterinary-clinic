@@ -9,6 +9,12 @@ const Form = () => {
   const [symptoms, setSymptoms] = useState("");
   const [error, setError] = useState(false);
 
+  const generateId = () => {
+    const random = Math.random().toString(36).substring(2);
+    const day = Date.now().toString(36);
+    return random + day;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if ([pet, owner, email, date, symptoms].includes("")) {
@@ -22,8 +28,8 @@ const Form = () => {
       email,
       date,
       symptoms,
+      id: generateId(),
     };
-    console.log(patient);
   };
 
   return (

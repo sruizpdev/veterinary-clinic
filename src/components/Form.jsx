@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Error from "./Error";
 
-const Form = () => {
+const Form = ({ patients, setPatients }) => {
   const [pet, setPet] = useState("");
   const [owner, setOwner] = useState("");
   const [email, setEmail] = useState("");
@@ -30,6 +30,13 @@ const Form = () => {
       symptoms,
       id: generateId(),
     };
+    setPatients([...patients, patient]);
+    setPet("");
+    setOwner("");
+    setEmail("");
+    setDate("");
+    setSymptoms("");
+    console.log();
   };
 
   return (
@@ -102,7 +109,7 @@ const Form = () => {
         <input
           type="submit"
           value="send"
-          className="bg-indigo-700 w-full py-2 rounded-md text-white uppercase font-bold"
+          className="bg-indigo-700 hover:bg-indigo-500 w-full py-2 rounded-md cursor-pointer transition-all text-white uppercase font-bold"
         />
       </form>
     </div>
